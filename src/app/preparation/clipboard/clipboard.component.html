@@ -1,0 +1,9 @@
+<h5 class="mt-0">
+  Paste here your questions and answers
+</h5>
+
+<textarea ngDefaultControl [(ngModel)]="quizService.textareaString"></textarea>
+<div class="box__buttons mt-3">
+  <button class="btn btn-secondary" (click)="pageService.disableClipboardView()">Back</button>
+  <button class="btn btn-primary" (click)="quizService.startQuiz()">Save and start quiz</button>
+</div>

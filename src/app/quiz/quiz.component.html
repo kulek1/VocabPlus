@@ -1,0 +1,55 @@
+<div class="cards__container">
+  <ng-template ngFor let-item [ngForOf]="quizService.questions" let-i="index">
+    <div class="card__box" [id]="i" *ngIf="i < (visibleNextCards + current) && i >= current" [@flyInOut]="'in'" #mainCard>
+      <div class="card__header" [class.dark-mode]="pageService.isDarkMode">
+        <h1 #mainQuestion>{{ item }}</h1>
+      </div>
+      <div class="card__content">
+        <div class="card__answer">
+          <div class="input-group" #mainInput>
+            <input autofocus type="text" [(ngModel)]="quizService.answerInput" (keyup.enter)="nextQuestionHelper()" required>
+            <div class="input__bar"></div>
+            <label *ngIf="!quizService.isValidationChecked;else incorrect_label">Your answer</label>
+            <ng-template #incorrect_label>
+              <label>Correct answer</label>
+            </ng-template>
+          </div>
+        </div>
+        <div class="card__buttons">
+          <button class="btn btn-primary" (click)="nextQuestionHelper()" #mainButton>Check</button>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+</div>
+
+<div class="quiz-result" *ngIf="isFinished" [@resultOut] (@resultOut.done)="restartQuizAnimationDone($event)">
+  <div id="circle__container">
+    <div class="progress-bar__null" *ngIf="score === 0">0%</div>
+  </div>
+  <div class="quiz-result__content">
+    <h2 class="quiz-result__header mb-1">{{ resultText }}</h2>
+    <p class="mt-0">You got
+      <strong>{{ quizService.score }}</strong> correctly of
+      <strong>{{ quizService.questions.length }}</strong> answers
+    </p>
+  </div>
+  <div class="quiz-result__buttons mt-5">
+    <button class="btn btn-secondary" (click)="quizService.stopQuiz()">Start new quiz</button>
+    <button class="btn btn-primary" (click)="restartQuizHelper()">Try again</button>
+  </div>
+</div>
+
+<div class="settings__container">
+  <div class="settings__icon" [class.active]="isSettingsMenu" (click)="toggleMenu()">
+    <i class="material-icons">settings</i>
+  </div>
+  <div class="settings__menu" [class.active]="isSettingsMenu">
+    <div class="menu__wrap">
+      <i class="material-icons icon" [class.active]="pageService.isDarkMode" (click)="toggleDarkMode()">lightbulb_outline</i>
+      <i class="material-icons icon rotate" (click)="toggleReplaceQuestions()">import_export</i>
+    </div>
+  </div>
+</div>
+
+<app-alert></app-alert>

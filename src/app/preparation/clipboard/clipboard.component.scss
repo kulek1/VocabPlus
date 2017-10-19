@@ -1,0 +1,17 @@
+@import "~scss/partials/buttons.scss";
+@import "~scss/helpers/spacing.scss";
+@import "../preparation.component.scss";
+
+textarea {
+  width: 100%;
+  max-width: 100%;
+  min-height: 300px;
+}
+
+.box {
+  &__buttons {
+    .btn {
+      flex-grow: 0;
+    }
+  }
+}

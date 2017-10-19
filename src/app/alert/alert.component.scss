@@ -1,0 +1,26 @@
+@import "~scss/modules/variables.scss";
+
+.alert {
+  position: fixed;
+  background: #fff;
+  top: 2em;
+  right: 0;
+  &__container {
+    display: flex;
+    align-items: center;
+    box-shadow: 0 3px 0px #d8d8d8;
+  }
+  &__icon {
+    display: flex;
+    min-height: 50px;
+    align-items: center;
+    width: 50px;
+    justify-content: center;
+    color: #fff;
+    background: $color-secondary;
+    box-shadow: 0 3px 0px #818b8f;
+  }
+  &__content {
+    margin: 0 15px;
+  }
+}

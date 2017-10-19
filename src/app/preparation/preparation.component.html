@@ -1,0 +1,15 @@
+<div class="box box__preparation" [class.box__clipboard]="pageService.clipboardView">
+  <div *ngIf="!pageService.clipboardView && !pageService.manualView; else copyContainer">
+    <h4>Let's create your first quiz</h4>
+    <h5>Select create data method:</h5>
+    <div class="box__buttons">
+      <button class="btn btn-secondary" (click)="pageService.openAlert()">Manual</button>
+      <button class="btn btn-primary" (click)="openClipboard()">Copy & Paste from clipboard</button>
+    </div>
+  </div>
+
+
+  <ng-template #copyContainer>
+    <app-clipboard [clipboardData]="clipboardData"></app-clipboard>
+  </ng-template>
+</div>

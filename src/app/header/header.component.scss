@@ -1,0 +1,10 @@
+@import "~scss/modules/variables.scss";
+
+header {
+  text-align: center;
+  padding-top: 50px;
+
+  @media screen and (max-width: 600px) {
+    padding-top: 25px;
+  }
+}

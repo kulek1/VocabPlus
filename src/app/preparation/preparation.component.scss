@@ -1,0 +1,32 @@
+@import "~scss/partials/buttons.scss";
+@import "~scss/partials/box.scss";
+
+.box {
+  &__preparation {
+    height: 215px;
+    transition: 1s height ease;
+    @media screen and (max-width: 480px) {
+      height: 260px;
+    }
+  }
+  &__clipboard {
+    height: 495px;
+    overflow: hidden;
+  }
+  h4 {
+    margin: 0;
+  }
+  h5 {
+    margin-top: 0.429em;
+  }
+  &__buttons {
+    display: flex;
+    .btn {
+      flex-grow: 1;
+      transition: 0.2s all ease;
+      &:first-child {
+        margin-right: 10px;
+      }
+    }
+  }
+}

@@ -1,0 +1,109 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "scss/modules/variables.scss";
+@import "scss/helpers/animation.scss";
+body,
+html {
+  height: 100%;
+  font-family: "Open Sans", sans-serif;
+  font-size: 14px;
+  color: $color-secondary;
+}
+
+* {
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+body {
+  background: #f1f1f1;
+  margin: 0;
+  &.quiz {
+    &--started {
+      background: $quiz-background;
+      &.quiz--correct {
+        animation: blinkCorrect 0.7s ease-in-out;
+      }
+      &.quiz--incorrect {
+        animation: blinkInCorrect 0.7s ease-in-out;
+      }
+      &.dark-mode {
+        background: $quiz-background-dark;
+        &.quiz--correct {
+          animation: blinkCorrectDark 0.7s ease-in-out;
+        }
+        &.quiz--incorrect {
+          animation: blinkInCorrectDark 0.7s ease-in-out;
+        }
+      }
+    }
+  }
+  transition: background 0.3s ease-in-out;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: $color-primary;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 300;
+}
+
+h4,
+h5 {
+  font-weight: 400;
+}
+
+h2 {
+  font-size: 3.429em;
+}
+
+h2 {
+  font-size: 2.5714em;
+}
+
+h4 {
+  font-size: 1.714em;
+}
+
+h5 {
+  font-size: 1.143em;
+  color: $color-secondary;
+}
+
+a {
+  color: $color-primary;
+  font-weight: 500;
+}
+
+::selection {
+  background: $color-primary;
+  color: #fff;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 800px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  &.center {
+    justify-content: center;
+  }
+  @media screen and (max-height: 600px) {
+    height: 100%;
+  }
+}
+
+.quiz-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}

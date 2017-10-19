@@ -1,0 +1,18 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div class="container" [class.center]="!pageService.isMainAnimationDone" *ngIf="!quizService.isStarted; else quizContainer">
+  <app-welcome *ngIf="!pageService.isMainAnimationDone"></app-welcome>
+
+  <div [hidden]="!pageService.isMainAnimationDone" id="mainbox">
+    <app-header></app-header>
+    <app-preparation></app-preparation>
+    <app-footer></app-footer>
+  </div>
+</div>
+
+<ng-template #quizContainer>
+  <div class="quiz-container ">
+    <app-quiz></app-quiz>
+  </div>
+</ng-template>
+
+<app-alert></app-alert>

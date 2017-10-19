@@ -1,0 +1,14 @@
+$ratio: (0, 0.25, 0.5, 1, 1.5, 3);
+$sides: (top, bottom, left, right);
+
+@for $i from 0 through 5 {
+  @each $side in $sides {
+    .m#{str-slice($side, 0, 1)}-#{$i} {
+      margin-#{$side}: 1em * nth($ratio, $i + 1) !important;
+    }
+
+    .p#{str-slice($side, 0, 1)}-#{$i} {
+      padding-#{$side}: 1em * nth($ratio, $i + 1) !important;
+    }
+  }
+}

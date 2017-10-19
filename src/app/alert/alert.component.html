@@ -1,0 +1,10 @@
+<div class="alert" [@alertState]="'in'" (@alertState.done)="alertStateLoaded()" *ngIf="pageService.isAlert">
+  <div class="alert__container">
+    <div class="alert__icon">
+      <i class="material-icons">error_outline</i>
+    </div>
+    <div class="alert__content">
+      This function is currently unavailable
+    </div>
+  </div>
+</div>
