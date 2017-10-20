@@ -133,8 +133,8 @@ export class QuizComponent implements OnInit {
   }
 
   selectInput() {
-    if (this.isFinished) {
-      const id = this.current.toString();
+    if (this.current + 1 < this.allQuestions) {
+      const id = (this.current + 1).toString();
       const cardBox = document.getElementById(id);
       const input = <HTMLInputElement>cardBox.getElementsByTagName("input")[0];
       input.select();
