@@ -6,6 +6,19 @@
 ### Live demo
 Check out the demo here: [Link](http://www.vocab.mkulinski.pl)
 
+### How to
+The fastest way to create a new quiz is open your favourite, text editor and create something like this:
+
+```
+Zdecyduj się - make up your mind
+Czy mógłbyś wyszorować podłogę? - Could you scrub the floor?
+Jak ci idzie z tym e-czytnikiem - How are you getting on with that e-reader?
+powtarzać materiał do egzaminu - revise for exams
+Uczyć się rzeczy na pamięć - learn things by heart
+```
+
+after that do Copy&Paste to Vocab+ and that's it!
+
 
 ## Features in the near feature
 
