@@ -7,7 +7,7 @@
       <div class="card__content">
         <div class="card__answer">
           <div class="input-group" #mainInput>
-            <input autofocus type="text" [(ngModel)]="quizService.answerInput" (keyup.enter)="nextQuestionHelper()" required>
+            <input autofocus type="text" [(ngModel)]="quizService.answerInput" (keyup.enter)="nextQuestionHelper()">
             <div class="input__bar"></div>
             <label *ngIf="!quizService.isValidationChecked;else incorrect_label">Your answer</label>
             <ng-template #incorrect_label>
