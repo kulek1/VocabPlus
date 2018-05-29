@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter } from "@angular/core";
+import { Injectable, EventEmitter } from '@angular/core';
 
 @Injectable()
 export class DataQuizService {
@@ -9,22 +9,23 @@ export class DataQuizService {
   isUppercaseSensitive: Boolean = false;
   isValidationChecked: Boolean = false;
 
-  textareaString: String = "";
+  textareaString: String = '';
   wordsFromString: Array<String>;
   questions: Array<String> = [];
   answers: Array<String> = [];
-  answerInput: String = "";
-  quizStartClass: string = "quiz--started";
+  answerInput: String = '';
+  quizStartClass: 'quiz--started';
 
-  currentQuestion: number = 0;
-  score: number = 0;
+  currentQuestion: 0;
+  score: 0;
 
-  bodyElement = document.getElementsByTagName("body")[0];
+  bodyElement = document.getElementsByTagName('body')[0];
 
-  constructor() {}
+  constructor() {
+  }
 
   trimWhiteSpace(str) {
-    return str.replace(/^\s\s*/, "").replace(/\s\s*$/, "");
+    return str.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
   }
 
   startQuiz() {
@@ -53,15 +54,15 @@ export class DataQuizService {
   }
 
   stringIntoArray() {
-    this.wordsFromString = this.textareaString.split(/\r?\n/);
+    this.wordsFromString = this.textareaString.trim().split(/\r?\n/);
   }
 
   arrayDivider() {
     const words = this.wordsFromString;
     for (let i = 0; i < words.length; i++) {
-      const index = words[i].indexOf(" - ");
-      this.questions[i] = words[i].substr(0, index);
-      this.answers[i] = words[i].substring(index + 3, words[i].length);
+      const index = words[i].search(/([-?])/);
+      this.questions[i] = words[i].substr(0, index).trim();
+      this.answers[i] = words[i].substring(index + 1, words[i].length).trim();
     }
   }
 
@@ -80,7 +81,7 @@ export class DataQuizService {
   }
 
   nextQuestion() {
-    this.answerInput = "";
+    this.answerInput = '';
     this.currentQuestion += 1;
     this.currentQuestionUpdated.emit(this.currentQuestion);
 
