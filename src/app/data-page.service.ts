@@ -1,5 +1,5 @@
-import { Injectable } from "@angular/core";
-import { Subject } from "rxjs/Subject";
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class DataPageService {
@@ -14,9 +14,10 @@ export class DataPageService {
   // animations
   isMainAnimationDone: Boolean = false;
 
-  bodyElement = document.getElementsByTagName("body")[0];
+  bodyElement = document.getElementsByTagName('body')[0];
 
-  constructor() {}
+  constructor() {
+  }
 
   disableClipboardView() {
     this.clipboardView = false;
@@ -26,6 +27,7 @@ export class DataPageService {
   openAlert() {
     this.isAlert = !this.isAlert;
   }
+
   closeAlert() {
     this.isAlert = false;
   }

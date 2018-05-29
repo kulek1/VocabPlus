@@ -5,44 +5,44 @@ import {
   ElementRef,
   AfterViewInit,
   DoCheck
-} from "@angular/core";
-import { NgFor } from "@angular/common";
+} from '@angular/core';
+import { NgFor } from '@angular/common';
 import {
   trigger,
   state,
   style,
   animate,
   transition
-} from "@angular/animations";
-import { Observable } from "rxjs/Rx";
-import { DataQuizService } from "./../data-quiz.service";
-import { DataPageService } from "./../data-page.service";
-import ProgressBar from "progressbar.js";
-import { TweenMax, Power3, Bounce } from "gsap";
+} from '@angular/animations';
+import { Observable } from 'rxjs/Rx';
+import { DataQuizService } from './../data-quiz.service';
+import { DataPageService } from './../data-page.service';
+import ProgressBar from 'progressbar.js';
+import { TweenMax, Power3, Bounce } from 'gsap';
 
 @Component({
-  selector: "app-quiz",
-  templateUrl: "./quiz.component.html",
-  styleUrls: ["./quiz.component.scss"],
+  selector: 'app-quiz',
+  templateUrl: './quiz.component.html',
+  styleUrls: ['./quiz.component.scss'],
   animations: [
-    trigger("flyInOut", [
-      state("in", style({})),
-      transition("void => *", [
-        style({ transform: "translateY(-20%) scale(0.6)", opacity: 0 }),
-        animate("400ms 100ms ease-in-out")
+    trigger('flyInOut', [
+      state('in', style({})),
+      transition('void => *', [
+        style({transform: 'translateY(-20%) scale(0.6)', opacity: 0}),
+        animate('400ms 100ms ease-in-out')
       ]),
-      transition("* => void", [
+      transition('* => void', [
         animate(
-          "400ms ease-in-out",
-          style({ transform: "translateX(50%)", opacity: 0 })
+          '400ms ease-in-out',
+          style({transform: 'translateX(50%)', opacity: 0})
         )
       ])
     ]),
-    trigger("resultOut", [
-      transition("* => void", [
+    trigger('resultOut', [
+      transition('* => void', [
         animate(
-          "200ms ease-in-out",
-          style({ transform: "translateX(-50%)", opacity: 0 })
+          '200ms ease-in-out',
+          style({transform: 'translateX(-50%)', opacity: 0})
         )
       ])
     ])
@@ -55,8 +55,8 @@ export class QuizComponent implements OnInit {
   score: number;
   // specify how many cards should be display above the current card
   visibleNextCards: number = 3;
-  state: string = "";
-  resultText: string = "";
+  state: string = '';
+  resultText: string = '';
 
   isCorrectAnswer: Boolean;
   isFinished = false;
@@ -65,10 +65,10 @@ export class QuizComponent implements OnInit {
 
   public watcher;
 
-  @ViewChild("mainQuestion") mainQuestion: ElementRef;
-  @ViewChild("mainCard") mainCard: ElementRef;
-  @ViewChild("mainButton") mainButton: ElementRef;
-  @ViewChild("mainInput") mainInput: ElementRef;
+  @ViewChild('mainQuestion') mainQuestion: ElementRef;
+  @ViewChild('mainCard') mainCard: ElementRef;
+  @ViewChild('mainButton') mainButton: ElementRef;
+  @ViewChild('mainInput') mainInput: ElementRef;
 
   constructor(
     private quizService: DataQuizService,
@@ -92,11 +92,12 @@ export class QuizComponent implements OnInit {
     }
     this.allQuestions = this.quizService.questions.length;
   }
+
   ngAfterViewInit() {
     this.headerFontSize = parseInt(
       window
         .getComputedStyle(this.mainQuestion.nativeElement)
-        .getPropertyValue("font-size"),
+        .getPropertyValue('font-size'),
       10
     );
     this.resizeHeader(this.current);
@@ -136,7 +137,7 @@ export class QuizComponent implements OnInit {
     if (this.current + 1 < this.allQuestions) {
       const id = (this.current + 1).toString();
       const cardBox = document.getElementById(id);
-      const input = <HTMLInputElement>cardBox.getElementsByTagName("input")[0];
+      const input = <HTMLInputElement>cardBox.getElementsByTagName('input')[0];
       input.select();
       input.focus();
     }
@@ -146,7 +147,7 @@ export class QuizComponent implements OnInit {
     if (this.allQuestions > id) {
       const cardId = id.toString();
       const cardBox = document.getElementById(cardId);
-      const header = cardBox.querySelector("h1");
+      const header = cardBox.querySelector('h1');
       const length = header.innerText.length;
       const decreasingScale = 0.1;
 
@@ -162,10 +163,10 @@ export class QuizComponent implements OnInit {
   }
 
   fireValidateResult() {
-    const correct = "correct";
-    const incorrect = "incorrect";
-    const correctBodyClass = "quiz--correct";
-    const incorrectBodyClass = "quiz--incorrect";
+    const correct = 'correct';
+    const incorrect = 'incorrect';
+    const correctBodyClass = 'quiz--correct';
+    const incorrectBodyClass = 'quiz--incorrect';
 
     if (this.isCorrectAnswer) {
       this.mainCard.nativeElement.classList.add(correct);
@@ -175,7 +176,7 @@ export class QuizComponent implements OnInit {
 
       this.quizService.bodyElement.classList.add(correctBodyClass);
 
-      this.mainButton.nativeElement.innerText = "CORRECT";
+      this.mainButton.nativeElement.innerText = 'CORRECT';
       this;
     } else {
       this.mainCard.nativeElement.classList.add(incorrect);
@@ -185,13 +186,14 @@ export class QuizComponent implements OnInit {
 
       this.quizService.bodyElement.classList.add(incorrectBodyClass);
 
-      this.mainButton.nativeElement.innerText = "INCORRECT";
+      this.mainButton.nativeElement.innerText = 'INCORRECT';
     }
     this.clearBodyClasses();
   }
+
   async clearBodyClasses() {
-    const correctBodyClass = "quiz--correct";
-    const incorrectBodyClass = "quiz--incorrect";
+    const correctBodyClass = 'quiz--correct';
+    const incorrectBodyClass = 'quiz--incorrect';
     setTimeout(() => {
       this.quizService.bodyElement.classList.remove(correctBodyClass);
       this.quizService.bodyElement.classList.remove(incorrectBodyClass);
@@ -202,25 +204,25 @@ export class QuizComponent implements OnInit {
     this.score = parseFloat(this.quizService.getScorePercents());
 
     if (this.score === 1) {
-      this.resultText = "Awesome!";
+      this.resultText = 'Awesome!';
     } else if (this.score < 1 && this.score >= 0.8) {
-      this.resultText = "Great!";
+      this.resultText = 'Great!';
     } else if (this.score < 0.8 && this.score >= 0.5) {
-      this.resultText = "Not bad";
+      this.resultText = 'Not bad';
     } else {
-      this.resultText = "Keep doing :(";
+      this.resultText = 'Keep doing :(';
     }
   }
 
   animateResultBox() {
-    const target = ".quiz-result";
+    const target = '.quiz-result';
     TweenMax.fromTo(
       target,
       1,
       {
         scale: 0.6,
         opacity: 0,
-        display: "block"
+        display: 'block'
       },
       {
         opacity: 1,
@@ -235,7 +237,7 @@ export class QuizComponent implements OnInit {
 
   animateResultText() {
     const textDelay = this.score;
-    const target = ".quiz-result__header";
+    const target = '.quiz-result__header';
     TweenMax.fromTo(
       target,
       1,
@@ -261,53 +263,56 @@ export class QuizComponent implements OnInit {
   }
 
   initializeProgressBar() {
-    const target = document.getElementById("circle__container");
-    if (target.getElementsByTagName("svg").length >= 1) {
-      target.innerHTML = "";
+    const target = document.getElementById('circle__container');
+    if (target.getElementsByTagName('svg').length >= 1) {
+      target.innerHTML = '';
     }
 
     const bar = new ProgressBar.Circle(target, {
-      color: "#aaa",
+      color: '#aaa',
       // This has to be the same size as the maximum width to
       // prevent clipping
       strokeWidth: 6,
       trailWidth: 2,
-      easing: "bounce",
+      easing: 'bounce',
       duration: 2000,
       text: {
         autoStyleContainer: true
       },
-      from: { color: "#ff2500", width: 1 },
-      to: { color: "#ffd123", width: 3 },
+      from: {color: '#ff2500', width: 1},
+      to: {color: '#ffd123', width: 3},
       // Set default step function for all animate calls
-      step: function(state, circle) {
-        circle.path.setAttribute("stroke", state.color);
-        circle.path.setAttribute("stroke-width", state.width);
+      step: function (state, circle) {
+        circle.path.setAttribute('stroke', state.color);
+        circle.path.setAttribute('stroke-width', state.width);
 
         let value = Math.round(circle.value() * 100);
         if (value === 0) {
-          circle.setText("");
+          circle.setText('');
         } else {
-          circle.setText(value + "%");
+          circle.setText(value + '%');
         }
         circle.text.style.color = state.color;
       }
     });
-    bar.text.style.fontSize = "2.571em";
+    bar.text.style.fontSize = '2.571em';
     bar.animate(this.score);
   }
+
   toggleMenu() {
     this.isSettingsMenu = !this.isSettingsMenu;
   }
+
   toggleDarkMode() {
     this.pageService.isDarkMode = !this.pageService.isDarkMode;
-    const darkModeClass = "dark-mode";
+    const darkModeClass = 'dark-mode';
     if (this.pageService.isDarkMode) {
       this.pageService.bodyElement.classList.add(darkModeClass);
     } else {
       this.pageService.bodyElement.classList.remove(darkModeClass);
     }
   }
+
   toggleReplaceQuestions() {
     this.pageService.isAlert = !this.pageService.isAlert;
   }

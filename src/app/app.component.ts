@@ -1,13 +1,13 @@
-import { Component, Input } from "@angular/core";
-import { DataQuizService } from "./data-quiz.service";
-import { DataPageService } from "./data-page.service";
-import { TweenMax, Power3 } from "gsap";
-import { Subscription } from "rxjs/Subscription";
+import { Component, Input } from '@angular/core';
+import { DataQuizService } from './data-quiz.service';
+import { DataPageService } from './data-page.service';
+import { TweenMax, Power3 } from 'gsap';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
-  selector: "app-root",
-  templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.scss"]
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
   item: Boolean;
@@ -22,7 +22,7 @@ export class AppComponent {
   }
 
   animateBox() {
-    TweenMax.from("#mainbox", 1, {
+    TweenMax.from('#mainbox', 1, {
       opacity: 0,
       scale: 0.6,
       ease: Power3.easeInOut
