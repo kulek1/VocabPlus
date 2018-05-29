@@ -14,10 +14,10 @@ export class DataQuizService {
   questions: Array<String> = [];
   answers: Array<String> = [];
   answerInput: String = '';
-  quizStartClass: 'quiz--started';
+  quizStartClass: string = 'quiz--started';
 
-  currentQuestion: 0;
-  score: 0;
+  currentQuestion: number = 0;
+  score: number = 0;
 
   bodyElement = document.getElementsByTagName('body')[0];
 
