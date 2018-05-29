@@ -3,6 +3,8 @@ import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class DataPageService {
+  // Subject
+  mainAnimation: Subject<Boolean> = new Subject<Boolean>();
   // views
   clipboardView: Boolean = false;
   manualView: Boolean = false;
@@ -31,9 +33,6 @@ export class DataPageService {
   closeAlert() {
     this.isAlert = false;
   }
-
-  // Subject
-  mainAnimation: Subject<Boolean> = new Subject<Boolean>();
 
   mainAnimationLoaded() {
     this.isMainAnimationDone = true;
