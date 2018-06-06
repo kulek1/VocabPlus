@@ -288,6 +288,7 @@ $scale: 0.05;
     .icon {
       cursor: pointer;
       padding: 10px;
+      transition: color 0.3s ease;
       &:nth-child(2n) {
         border: 1px solid #e6e6e6;
       }
