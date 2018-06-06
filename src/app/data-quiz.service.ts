@@ -5,14 +5,13 @@ export class DataQuizService {
   currentQuestionUpdated: EventEmitter<number> = new EventEmitter();
   finishEvent: EventEmitter<Boolean> = new EventEmitter();
   isStarted: Boolean = false;
-  isPreparation: Boolean = false;
   isUppercaseSensitive: Boolean = false;
   isValidationChecked: Boolean = false;
+  isRandomMode: Boolean = true;
 
   textareaString: String = '';
   wordsFromString: Array<String>;
-  questions: Array<String> = [];
-  answers: Array<String> = [];
+  quizData: Array<any> = [];
   answerInput: String = '';
   quizStartClass: 'quiz--started';
 
@@ -49,8 +48,7 @@ export class DataQuizService {
   }
 
   flushArrays() {
-    this.questions = [];
-    this.answers = [];
+    this.quizData = [];
   }
 
   stringIntoArray() {
@@ -61,14 +59,25 @@ export class DataQuizService {
     const words = this.wordsFromString;
     for (let i = 0; i < words.length; i++) {
       const index = words[i].search(/([-?])/);
-      this.questions[i] = words[i].substr(0, index).trim();
-      this.answers[i] = words[i].substring(index + 1, words[i].length).trim();
+
+      this.quizData[i] = {
+        question: words[i].substr(0, index).trim(),
+        answer: words[i].substring(index + 1, words[i].length).trim(),
+      };
+    }
+    if (this.isRandomMode) { this.shuffleArray(this.quizData); }
+  }
+
+  shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]]; // eslint-disable-line no-param-reassign
     }
   }
 
   validateCurrentQuestion() {
     const user = this.trimWhiteSpace(this.answerInput);
-    const correctAnswer = this.answers[this.currentQuestion];
+    const correctAnswer = this.quizData[this.currentQuestion].answer;
     if (this.isUppercaseSensitive) {
       return user === correctAnswer;
     } else {
@@ -77,7 +86,7 @@ export class DataQuizService {
   }
 
   displayCorrectAnswer() {
-    this.answerInput = this.answers[this.currentQuestion];
+    this.answerInput = this.quizData[this.currentQuestion].answer;
   }
 
   nextQuestion() {
@@ -91,11 +100,15 @@ export class DataQuizService {
   }
 
   getNumberOfQuestions() {
-    return this.questions.length;
+    return this.quizData.length;
   }
 
   getScorePercents() {
     // return 0.5 as 50%
     return (this.score / this.getNumberOfQuestions()).toFixed(2);
+  }
+
+  toggleRandomOrder() {
+    this.isRandomMode = !this.isRandomMode;
   }
 }

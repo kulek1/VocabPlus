@@ -14,11 +14,10 @@ import {
   animate,
   transition
 } from '@angular/animations';
-import { Observable } from 'rxjs/Rx';
-import { DataQuizService } from './../data-quiz.service';
-import { DataPageService } from './../data-page.service';
-import ProgressBar from 'progressbar.js';
+import { DataQuizService } from '../data-quiz.service';
+import { DataPageService } from '../data-page.service';
 import { TweenMax, Power3, Bounce } from 'gsap';
+import ProgressBar from 'progressbar.js';
 
 @Component({
   selector: 'app-quiz',
@@ -60,7 +59,6 @@ export class QuizComponent implements OnInit {
 
   isCorrectAnswer: Boolean;
   isFinished = false;
-  isProgressBarInitialized: Boolean = false;
   isSettingsMenu: Boolean = false;
 
   public watcher;
@@ -90,7 +88,7 @@ export class QuizComponent implements OnInit {
     if (this.quizService.getNumberOfQuestions() < this.visibleNextCards) {
       this.visibleNextCards = this.quizService.getNumberOfQuestions();
     }
-    this.allQuestions = this.quizService.questions.length;
+    this.allQuestions = this.quizService.quizData.length;
   }
 
   ngAfterViewInit() {
@@ -177,7 +175,6 @@ export class QuizComponent implements OnInit {
       this.quizService.bodyElement.classList.add(correctBodyClass);
 
       this.mainButton.nativeElement.innerText = 'CORRECT';
-      this;
     } else {
       this.mainCard.nativeElement.classList.add(incorrect);
       this.mainQuestion.nativeElement.classList.add(incorrect);

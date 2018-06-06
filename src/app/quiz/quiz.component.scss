@@ -264,7 +264,7 @@ $scale: 0.05;
       height 0.65s cubic-bezier(0.74, 0.01, 0.2, 1),
       width 0.55s cubic-bezier(0.74, 0.01, 0.2, 1);
     &.active {
-      height: 100px;
+      height: 135px;
       transform: scale(1);
       transition: transform 0.3s ease,
         height 0.65s 0.3s cubic-bezier(0.74, 0.01, 0.37, 1.55),
@@ -287,9 +287,9 @@ $scale: 0.05;
     }
     .icon {
       cursor: pointer;
-      padding: 10px 0;
-      &:nth-child(1) {
-        border-bottom: 1px solid #d8d8d8;
+      padding: 10px;
+      &:nth-child(2n) {
+        border: 1px solid #e6e6e6;
       }
       &.active {
         color: $btn-primary-bg;
