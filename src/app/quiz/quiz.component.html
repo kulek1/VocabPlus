@@ -50,6 +50,12 @@
   </div>
 </div>
 
+<div class="back-button__container">
+  <button title="back to menu" (click)="quizService.stopQuiz()">
+    <i class="material-icons">arrow_back</i>
+  </button>
+</div>
+
 <div class="settings__container">
   <div class="settings__icon" [class.active]="isSettingsMenu" (click)="toggleMenu()">
     <i class="material-icons">settings</i>

@@ -10,6 +10,7 @@ $scale: 0.05;
     display: flex;
     flex-direction: column-reverse;
     position: relative;
+
     .card {
       &__header {
         text-align: center;
@@ -22,6 +23,7 @@ $scale: 0.05;
         justify-content: center;
         align-items: center;
         overflow: hidden;
+
         h1 {
           margin: 0;
           color: #fff;
@@ -41,6 +43,7 @@ $scale: 0.05;
         margin-top: 40px;
         display: flex;
         justify-content: center;
+
         .btn {
           &.correct {
             background: $correct-answer;
@@ -58,6 +61,7 @@ $scale: 0.05;
         border-radius: 4px;
         transition: 0.5s all ease;
         box-shadow: 0 0px 14px rgba(108, 108, 108, 0.4);
+
         &.correct {
           border-bottom-color: $correct-answer;
         }
@@ -91,6 +95,7 @@ $scale: 0.05;
   padding-top: 20px;
   position: relative;
   overflow: hidden;
+
   &.correct {
     input {
       &:focus,
@@ -132,6 +137,7 @@ $scale: 0.05;
     height: 40px;
     outline: none;
     padding: 0 10px;
+
     &:focus,
     &:valid {
       ~ .input__bar {
@@ -185,11 +191,11 @@ $scale: 0.05;
   border-radius: 4px;
   box-shadow: 0 0px 14px rgba(108, 108, 108, 0.4);
   #circle__container {
-    margin: 20px 20px 0;
     width: 160px;
     height: 160px;
     position: relative;
     margin: 0 auto;
+
     .progress-bar__null {
       margin: auto;
       position: absolute;
@@ -221,6 +227,34 @@ $scale: 0.05;
   }
 }
 
+.back-button {
+  &__container {
+    position: fixed;
+    left: 1rem;
+    top: 1rem;
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+
+    > button {
+      width: 40px;
+      height: 40px;
+      color: $color-secondary;
+      border: 0;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 0 14px rgba(108, 108, 108, 0.5);
+      opacity: 0.2;
+      transition: opacity 0.3s ease;
+
+      &:hover {
+        opacity: 1;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
 .settings {
   &__container {
     border-radius: 50%;
@@ -232,7 +266,7 @@ $scale: 0.05;
     height: 40px;
     display: flex;
     justify-content: center;
-    box-shadow: 0 0px 14px rgba(108, 108, 108, 0.4);
+    box-shadow: 0 0 14px rgba(108, 108, 108, 0.5);
     z-index: 10;
   }
   &__icon {
@@ -263,12 +297,14 @@ $scale: 0.05;
     transition: transform 0.3s ease 0.6s,
       height 0.65s cubic-bezier(0.74, 0.01, 0.2, 1),
       width 0.55s cubic-bezier(0.74, 0.01, 0.2, 1);
+
     &.active {
       height: 135px;
       transform: scale(1);
       transition: transform 0.3s ease,
         height 0.65s 0.3s cubic-bezier(0.74, 0.01, 0.37, 1.55),
         width 0.55s cubic-bezier(0.74, 0.01, 0.37, 1.55) 0.5s;
+
       .menu__wrap {
         bottom: 0;
         transition: bottom 0.3s ease 0.5s;
@@ -281,6 +317,7 @@ $scale: 0.05;
       flex-direction: column;
       bottom: -100px;
       transition: bottom 0.3s ease 0.2s;
+
       .rotate {
         transform: rotate(90deg);
       }
@@ -289,6 +326,7 @@ $scale: 0.05;
       cursor: pointer;
       padding: 10px;
       transition: color 0.3s ease;
+
       &:nth-child(2n) {
         border: 1px solid #e6e6e6;
       }
