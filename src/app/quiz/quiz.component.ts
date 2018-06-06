@@ -3,8 +3,6 @@ import {
   OnInit,
   ViewChild,
   ElementRef,
-  AfterViewInit,
-  DoCheck
 } from '@angular/core';
 import { NgFor } from '@angular/common';
 import {
