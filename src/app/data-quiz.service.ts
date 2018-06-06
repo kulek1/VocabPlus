@@ -58,11 +58,11 @@ export class DataQuizService {
   arrayDivider() {
     const words = this.wordsFromString;
     for (let i = 0; i < words.length; i++) {
-      const index = words[i].search(/([-?])/);
+      const index = words[i].search(/(\s[-]\s)|([?]\s)/);
 
       this.quizData[i] = {
-        question: words[i].substr(0, index).trim(),
-        answer: words[i].substring(index + 1, words[i].length).trim(),
+        question: words[i].substr(0, index + 1).trim(),
+        answer: words[i].substring(index + 2, words[i].length).trim(),
       };
     }
     if (this.isRandomMode) { this.shuffleArray(this.quizData); }
