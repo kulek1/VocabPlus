@@ -1,10 +1,10 @@
-![Header](http://vocab.mkulinski.pl/github-kulek1.png)
+![Header](https://vocab.mkulinski.com/github-kulek1.png)
 # Vocab+
 
 > Development version of single-page application to learn vocabulary quickly and effectively!
 
 ### Live demo
-Check out the demo here: [Link](http://www.vocab.mkulinski.pl)
+Check out the demo here: [Link](https://www.vocab.mkulinski.com)
 
 ### How to
 The fastest way to create a new quiz is open your favourite, text editor and create something like this:
